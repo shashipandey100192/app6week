@@ -8,6 +8,7 @@ import "./pages/style.css";
 import Userlogin from './modules/users/auth/Userlogin';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Userregistor from './modules/users/auth/Userregistor';
+import Userlandingpage from './modules/users/dashboard/Userlandingpage';
 
 
 
@@ -18,6 +19,7 @@ root.render(
       <Routes>
         <Route path='' element={<Userlogin/>}></Route>
         <Route path='registor' element={<Userregistor/>}></Route>
+        <Route path='landing' element={<Userlandingpage/>}></Route>
 
       </Routes>
     </BrowserRouter>
