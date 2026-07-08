@@ -29,7 +29,7 @@ function Userlogin() {
                                 <div class="mb-3">
                                    
                                     <input type="button"  value="login" class="btn btn-success" />
-                                    <Link to='#' className='ms-5'>New Registor </Link>
+                                    <Link to='registor' className='ms-5'>New Registor </Link>
                                 </div>
                             </div>
                         </div>
