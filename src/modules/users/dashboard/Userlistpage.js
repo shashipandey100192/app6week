@@ -1,17 +1,21 @@
-import React, { useState } from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 
 function Userlistpage() {
 
-const [userlist, updateusers]=useState({
-    id:10,
-    first:"kumar",
-    last:"singh",
-    email:"kumar@gmail.com",
-    phone:"8754545",
-    city:"noida",
-})
+const [userlist, updateusers]=useState([])
 
 
+const myapi = ()=>{
+    axios.get("https://dummyjson.com/users").then((d)=>{
+        console.log(d.data.users);
+        updateusers(d.data.users);
+    })
+}
+
+useEffect(()=>{
+    myapi();
+},[]);
 
 
     return (
@@ -33,15 +37,20 @@ const [userlist, updateusers]=useState({
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">{userlist.id}</th>
-                                <td>{userlist.first}</td>
-                                <td>{userlist.last}</td>
-                                <td>{userlist.email}</td>
-                                <td>{userlist.phone}</td>
-                                <td>{userlist.city}</td>
+                            {userlist.map((u)=>{
+                                return(
+                                    <tr>
+                                <th scope="row">{u.id}</th>
+                                <td>{u.firstName}</td>
+                                <td>{u.lastName}</td>
+                                <td>{u.email}</td>
+                                <td>{u.phone}</td>
+                                <td>{u.city}</td>
                                 <td>actions</td>
                             </tr>
+                                )
+                            })}
+                            
 
                         </tbody>
                     </table>
