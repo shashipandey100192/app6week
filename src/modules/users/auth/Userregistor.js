@@ -61,8 +61,8 @@ const myform = (d)=>{
                             <div className='col-12 text-center'>
                                 <div class="mb-3">
                                    
-                                    <input type="submit"  value="login" class="btn btn-success" />
-                                    {/* <Link to='registor' className='ms-5'>New Registor </Link> */}
+                                    <input type="submit"  value="Registor Now" class="btn btn-success" />
+                                    <Link to='/' className='ms-5'>Back to Login</Link>
                                 </div>
                             </div>
                         </div>
