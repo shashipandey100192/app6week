@@ -3,20 +3,37 @@ import React, { useEffect, useState } from 'react'
 
 function Userlistpage() {
 
-const [userlist, updateusers]=useState([])
+    const [userlist, updateusers] = useState([])
 
 
-const myapi = ()=>{
-    axios.get("https://dummyjson.com/users").then((d)=>{
-        console.log(d.data.users);
-        updateusers(d.data.users);
-    })
-}
+    const myapi = () => {
+        axios.get("http://localhost:8900/alldata").then((d) => {
+            console.log(d.data.userslist);
+            updateusers(d.data.userslist);
+        })
+    }
 
-useEffect(()=>{
-    myapi();
-},[]);
+    useEffect(() => {
+        myapi();
+    }, []);
 
+
+    const userdelete = (r) => {
+
+            axios.delete("http://localhost:8900/userdelete/" + r).then((res) => {
+                console.log(res);
+                if(res.data.status===209)
+                {
+                alert(res.data.msg);
+                }
+                myapi();
+            });
+            
+        }
+       
+        
+
+    
 
     return (
         <div className='container-fluid'>
@@ -24,36 +41,36 @@ useEffect(()=>{
                 <div className='col-12 mt-3'>
                     <div className='card p-3'>
                         <h3>Users List</h3>
-                    <table class="table table-bordered border-primary   ">
-                        <thead>
-                            <tr>
-                                <th scope="col">Id</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Phone</th>
-                                <th scope="col">City</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {userlist.map((u)=>{
-                                return(
-                                    <tr>
-                                <th scope="row">{u.id}</th>
-                                <td>{u.firstName}</td>
-                                <td>{u.lastName}</td>
-                                <td>{u.email}</td>
-                                <td>{u.phone}</td>
-                                <td>{u.city}</td>
-                                <td>actions</td>
-                            </tr>
-                                )
-                            })}
-                            
+                        <table class="table table-bordered border-primary   ">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Phone</th>
+                                    <th scope="col">Gender</th>
+                                    <th scope="col">Password</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {userlist.map((u) => {
+                                    return (
+                                        <tr>
+                                            <th scope="row">{u._id}</th>
+                                            <td>{u.email}</td>
+                                            <td>{u.phone}</td>
+                                            <td>{u.gender}</td>
+                                            <td>{u.pass}</td>
+                                            <td>
+                                                <button className='btn btn-danger btn-sm' onClick={() => userdelete(u._id)}>Del</button>
+                                            </td>
+                                        </tr>
+                                    )
+                                })}
 
-                        </tbody>
-                    </table>
+
+                            </tbody>
+                        </table>
                     </div>
 
                 </div>
