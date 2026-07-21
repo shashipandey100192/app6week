@@ -8,7 +8,7 @@ function Userregistor() {
 
 const myform = (d)=>{
     console.log(d)
-    axios.post("http://localhost:8900/registor",d).then((r)=>{
+    axios.post(`${"https://sixweekbackend.onrender.com"}/registor`,d).then((r)=>{
         console.log(r);
         if(r.data.status===211)
         {

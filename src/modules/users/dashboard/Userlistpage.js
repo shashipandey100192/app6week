@@ -7,7 +7,7 @@ function Userlistpage() {
 
 
     const myapi = () => {
-        axios.get("http://localhost:8900/alldata").then((d) => {
+        axios.get(`${"https://sixweekbackend.onrender.com"}/alldata`).then((d) => {
             console.log(d.data.userslist);
             updateusers(d.data.userslist);
         })
@@ -20,7 +20,7 @@ function Userlistpage() {
 
     const userdelete = (r) => {
 
-            axios.delete("http://localhost:8900/userdelete/" + r).then((res) => {
+            axios.delete(`${"https://sixweekbackend.onrender.com"}/userdelete/` + r).then((res) => {
                 console.log(res);
                 if(res.data.status===209)
                 {
